@@ -17,6 +17,39 @@
 
 Frontend часть игры размещена в каталоге `static/`.
 
+# Сборка
+Потребуется Conan версии 1 `sudo pip install conan==1.*`
+
+## Сборка под Linux
+```
+# mkdir -p build-release 
+# cd build-release
+# conan install .. --build=missing -s build_type=Release -s compiler.libcxx=libstdc++11
+# cmake .. -DCMAKE_BUILD_TYPE=Release
+# cmake --build .
+
+# mkdir -p build-debug
+# cd build-debug
+# conan install .. --build=missing -s build_type=Debug -s compiler.libcxx=libstdc++11
+# cmake .. -DCMAKE_BUILD_TYPE=Debug
+# cmake --build .
+
+```
+
+## Сборка под Windows
+```
+# mkdir build 
+# cd build
+# conan install .. --build=missing -s build_type=Debug
+# conan install .. --build=missing -s build_type=Release
+# conan install .. --build=missing -s build_type=RelWithDebInfo
+# conan install .. --build=missing -s build_type=MinSizeRel
+# cmake .. -G "MinGW Makefiles"
+# cmake --build .
+
+```
+Запускать сборку нужно только через родной cmd. В других консолях иногда возникают проблемы.
+
 # Предоставляемый REST API.
 
 1) получение списка карт,
